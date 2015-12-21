@@ -35,6 +35,9 @@ public class GameScreen implements Screen, InputProcessor{
 
     Array<TextureAtlas.AtlasRegion> atlasRegions;
 
+    Animation bodyfaceAnimation;
+    AnimatedImage bodyfaceAnimationActor;
+
     Animation bodyAnimation;
     AnimatedImage bodyAnimationActor;
 
@@ -78,62 +81,10 @@ public class GameScreen implements Screen, InputProcessor{
 
         manager = new AssetManager();
 
-        textureAtlas = new TextureAtlas(Gdx.files.internal("spritesheets/body/light/walking.atlas"));
-
-        bodyAnimation = new Animation(0.25f , textureAtlas.getRegions()); // textureAtlas.getRegions()
-        bodyAnimationActor = new AnimatedImage(bodyAnimation);
-        bodyAnimationActor.setPosition(playerPositionX-bodyAnimation.getKeyFrame(0).getRegionWidth()/2, playerPositionY-bodyAnimation.getKeyFrame(0).getRegionHeight()/2);
-
-        float bodyWidth = bodyAnimation.getKeyFrame(0).getRegionWidth();
-        float bodyHeight = bodyAnimation.getKeyFrame(0).getRegionHeight();
-        float bodyX = bodyAnimationActor.getX();
-        float bodyY = bodyAnimationActor.getY();
-
-
-
-        Group body = new Group();
-        body.addActor(bodyAnimationActor);
-
-
-        Group head = new Group();
-
-        textureAtlas = new TextureAtlas(Gdx.files.internal("spritesheets/head/light/walking.atlas"));
-
-        headAnimation = new Animation(0.25f , textureAtlas.getRegions()); // textureAtlas.getRegions()
-        headAnimationActor = new AnimatedImage(headAnimation);
-//        headAnimationActor.setPosition(bodyX - bodyWidth * 0.05f, bodyY + bodyHeight * 0.87f);
-        headAnimationActor.setPosition(bodyX, bodyY+30);
-
-        float headWidth = headAnimation.getKeyFrame(0).getRegionWidth();
-        float headHeight = headAnimation.getKeyFrame(0).getRegionHeight();
-        float headX = headAnimationActor.getX();
-        float headY = headAnimationActor.getY();
-
-        head.addActor(headAnimationActor);
-
-
-
-        textureAtlas = new TextureAtlas(Gdx.files.internal("spritesheets/face/male/001/walking.atlas"));
-
-        faceAnimation = new Animation(0.25f, textureAtlas.getRegions());
-        faceAnimationActor = new AnimatedImage(faceAnimation);
-        faceAnimationActor.setPosition(headX+4, headY-6);
-
-        head.addActor(faceAnimationActor);
-
-
-        textureAtlas = new TextureAtlas(Gdx.files.internal("spritesheets/hair/male/002/black/walking.atlas"));
-
-        hairAnimation = new Animation(0.25f, textureAtlas.getRegions());
-        hairAnimationActor = new AnimatedImage(hairAnimation);
-//        hairAnimationActor.setPosition(/*headX+headWidth*0.085f*/headX-hairAnimation.getKeyFrame(0).getRegionWidth()*0.3445f, headY - hairAnimation.getKeyFrame(0).getRegionWidth()*0.31f);
-        hairAnimationActor.setPosition(headX+1, headY+7);
-        head.addActor(hairAnimationActor);
-
-
-        Group player = new Group();
-        player.addActor(body);
-        player.addActor(head);
+        Group x = new Group();
+        PlayerAnimation walking = new PlayerAnimation(p, "walking", playerPositionX, playerPositionY, 0, 0);
+        PlayerAnimation swing1 = new PlayerAnimation(p, "swing1", playerPositionX, playerPositionY, 3, -4);
+        x.addActor(swing1.getGroup());
 
 
 
@@ -154,7 +105,6 @@ public class GameScreen implements Screen, InputProcessor{
             public void clicked(InputEvent event, float x, float y) {
                 Gdx.app.log("HackerStory", "Being saved: " + Gdx.files.getLocalStoragePath());
                 game.saveGame(p);
-                //super.clicked(event, x, y);
             }
         });
 
@@ -166,17 +116,10 @@ public class GameScreen implements Screen, InputProcessor{
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 p.setSpeed(p.getSpeed() + 1);
-                //super.clicked(event, x, y);
             }
         });
 
-
-
-
-
-//        stage.addActor(attackAnimationActor);
-//        stage.addActor(faceAnimationActor);
-        stage.addActor(player);
+        stage.addActor(x);
         stage.addActor(textButton);
         stage.addActor(addSpeed);
 

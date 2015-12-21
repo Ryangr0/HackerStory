@@ -6,9 +6,11 @@ public class Player {
     private String id;
     private int speed;
     private String name;
-    private String body = "light";
-    private String gender = "male";
-    private String face = "001";
+    public String body = "light";
+    public String gender = "male";
+    public String face = "001";
+    public String hair = "002";
+    public String hairColor = "black";
     private int job = 2;
 
     public Player(){
