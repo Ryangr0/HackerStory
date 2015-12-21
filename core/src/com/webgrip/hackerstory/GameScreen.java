@@ -82,7 +82,7 @@ public class GameScreen implements Screen, InputProcessor{
 
         bodyAnimation = new Animation(0.25f , textureAtlas.getRegions()); // textureAtlas.getRegions()
         bodyAnimationActor = new AnimatedImage(bodyAnimation);
-        bodyAnimationActor.setPosition(playerPositionX, playerPositionY);
+        bodyAnimationActor.setPosition(playerPositionX-bodyAnimation.getKeyFrame(0).getRegionWidth()/2, playerPositionY-bodyAnimation.getKeyFrame(0).getRegionHeight()/2);
 
         float bodyWidth = bodyAnimation.getKeyFrame(0).getRegionWidth();
         float bodyHeight = bodyAnimation.getKeyFrame(0).getRegionHeight();
@@ -101,7 +101,8 @@ public class GameScreen implements Screen, InputProcessor{
 
         headAnimation = new Animation(0.25f , textureAtlas.getRegions()); // textureAtlas.getRegions()
         headAnimationActor = new AnimatedImage(headAnimation);
-        headAnimationActor.setPosition(bodyX - bodyWidth * 0.05f, bodyY + bodyHeight * 0.87f);
+//        headAnimationActor.setPosition(bodyX - bodyWidth * 0.05f, bodyY + bodyHeight * 0.87f);
+        headAnimationActor.setPosition(bodyX, bodyY+30);
 
         float headWidth = headAnimation.getKeyFrame(0).getRegionWidth();
         float headHeight = headAnimation.getKeyFrame(0).getRegionHeight();
@@ -109,14 +110,14 @@ public class GameScreen implements Screen, InputProcessor{
         float headY = headAnimationActor.getY();
 
         head.addActor(headAnimationActor);
- 
 
 
-        textureAtlas = new TextureAtlas(Gdx.files.internal("spritesheets/face/male/002/walking.atlas"));
+
+        textureAtlas = new TextureAtlas(Gdx.files.internal("spritesheets/face/male/001/walking.atlas"));
 
         faceAnimation = new Animation(0.25f, textureAtlas.getRegions());
         faceAnimationActor = new AnimatedImage(faceAnimation);
-        faceAnimationActor.setPosition(headX+headWidth*0.25f, headY + headHeight*0.1f);
+        faceAnimationActor.setPosition(headX+4, headY-6);
 
         head.addActor(faceAnimationActor);
 
@@ -125,8 +126,8 @@ public class GameScreen implements Screen, InputProcessor{
 
         hairAnimation = new Animation(0.25f, textureAtlas.getRegions());
         hairAnimationActor = new AnimatedImage(hairAnimation);
-        hairAnimationActor.setPosition(/*headX+headWidth*0.085f*/headX+hairAnimation.getKeyFrame(0).getRegionWidth()*0.04f, headY + headHeight*0.39f);
-
+//        hairAnimationActor.setPosition(/*headX+headWidth*0.085f*/headX-hairAnimation.getKeyFrame(0).getRegionWidth()*0.3445f, headY - hairAnimation.getKeyFrame(0).getRegionWidth()*0.31f);
+        hairAnimationActor.setPosition(headX+1, headY+7);
         head.addActor(hairAnimationActor);
 
 

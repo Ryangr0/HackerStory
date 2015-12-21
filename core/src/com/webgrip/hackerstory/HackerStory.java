@@ -17,8 +17,8 @@ public class HackerStory extends Game {
 
 	String TITLE = "HackerStory", VERSION = "0.0.1";
 
-	public static final float WORLD_WIDTH = 16* 30;
-	public static final float WORLD_HEIGHT = 9* 30;
+	public static final float WORLD_WIDTH = 16* 60;
+	public static final float WORLD_HEIGHT = 9* 60;
 
 	@Override
 	public void create () {

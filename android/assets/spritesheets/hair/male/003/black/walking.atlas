@@ -6,14 +6,14 @@ repeat: none
 01
   rotate: false
   xy: 0, 0
-  size: 60, 48
-  orig: 60, 48
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: -1
 02
   rotate: false
-  xy: 60, 0
-  size: 60, 48
-  orig: 60, 48
+  xy: 128, 0
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: -1
